@@ -1,0 +1,34 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "color": { "1": "yellow" },
+    "padding": { "top": 2, "right": 4 }
+  },
+  "display": {
+    "separator": "  ",
+    "color": { "keys": "yellow", "title": "green" }
+  },
+  "modules": [
+    "break",
+    { "type": "title", "color": { "user": "green", "at": "white", "host": "yellow" } },
+    { "type": "custom", "format": "\u001b[38;2;102;92;84m────────────────────────────────\u001b[0m" },
+    { "type": "os",       "key": "  os     ", "keyColor": "yellow" },
+    { "type": "kernel",   "key": "  kernel ", "keyColor": "yellow" },
+    { "type": "uptime",   "key": "  uptime ", "keyColor": "yellow" },
+    { "type": "packages", "key": " 󰏖 pkgs   ", "keyColor": "yellow" },
+    { "type": "shell",    "key": "  shell  ", "keyColor": "yellow" },
+    { "type": "terminal", "key": "  term   ", "keyColor": "yellow" },
+    { "type": "wm",       "key": "  wm     ", "keyColor": "yellow" },
+    { "type": "custom", "format": "\u001b[38;2;102;92;84m────────────────────────────────\u001b[0m" },
+    { "type": "cpu",     "key": "  cpu    ", "keyColor": "green" },
+    { "type": "gpu",     "key": " 󰢮 gpu    ", "keyColor": "green" },
+    { "type": "memory",  "key": "  ram    ", "keyColor": "green" },
+    { "type": "disk",    "key": "  disk   ", "keyColor": "green" },
+    { "type": "battery", "key": "  bat    ", "keyColor": "green" },
+    { "type": "display", "key": " 󰍹 res    ", "keyColor": "green" },
+    "break",
+    { "type": "colors", "paddingLeft": 2, "symbol": "circle" },
+    "break"
+  ]
+}

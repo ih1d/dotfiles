@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+*.swo
+*~
+
+# btop rewrites its own config on exit; keep the themed one but ignore churn
+shared/btop/btop.conf.bak
+
+# local-only overrides
+*.local

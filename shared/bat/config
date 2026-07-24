@@ -1,0 +1,4 @@
+--theme="gruvbox-dark"
+--style="numbers,changes,header"
+--italic-text=always
+--paging=auto

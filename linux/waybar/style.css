@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════════════════
+   Waybar — gruvbox rice
+   Mirrors macos/sketchybar/colors.sh. See CLAUDE.md §2.
+   ═══════════════════════════════════════════════════════════════ */
+
+@define-color bg0_h  #1d2021;
+@define-color bg0    #282828;
+@define-color bg1    #3c3836;
+@define-color bg2    #504945;
+@define-color bg3    #665c54;
+@define-color fg1    #ebdbb2;
+@define-color fg3    #bdae93;
+@define-color gray   #928374;
+@define-color red    #fb4934;
+@define-color green  #b8bb26;
+@define-color yellow #fabd2f;
+@define-color blue   #83a598;
+@define-color purple #d3869b;
+@define-color aqua   #8ec07c;
+@define-color orange #fe8019;
+
+* {
+  font-family: "Iosevka Nerd Font";
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 0;
+}
+
+window#waybar {
+  background: alpha(@bg0_h, 0.90);
+  border: 2px solid @bg1;
+  border-radius: 10px;
+  color: @fg1;
+}
+
+/* ── workspaces ───────────────────────────────────────────── */
+#workspaces {
+  padding: 0 4px;
+}
+
+#workspaces button {
+  padding: 0 9px;
+  margin: 4px 2px;
+  border-radius: 6px;
+  color: @bg3;            /* empty workspace */
+  background: transparent;
+}
+
+#workspaces button.occupied {
+  color: @fg3;
+}
+
+#workspaces button.active {
+  color: @bg0_h;
+  background: @yellow;    /* GB_ACCENT */
+}
+
+#workspaces button:hover {
+  background: @bg2;
+  color: @fg1;
+}
+
+/* ── focused window ───────────────────────────────────────── */
+#window {
+  color: @aqua;
+  padding: 0 10px;
+  margin-left: 4px;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+}
+
+/* ── right side ───────────────────────────────────────────── */
+#cpu,
+#memory,
+#pulseaudio,
+#battery,
+#clock {
+  padding: 0 10px;
+  margin: 4px 2px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+#cpu       { color: @blue;   }
+#memory    { color: @purple; }
+#pulseaudio{ color: @aqua;   }
+#battery   { color: @green;  }
+
+#clock {
+  color: @yellow;
+  background: @bg0;
+}
+
+/* ── states ───────────────────────────────────────────────── */
+#cpu.warning,
+#memory.warning,
+#battery.warning {
+  color: @orange;
+}
+
+#cpu.critical,
+#memory.critical,
+#battery.critical {
+  color: @red;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#pulseaudio.muted {
+  color: @gray;
+}
+
+tooltip {
+  background: @bg0_h;
+  border: 2px solid @bg1;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: @fg1;
+}

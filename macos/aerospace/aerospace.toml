@@ -1,0 +1,152 @@
+# ─────────────────────────────────────────────────────────────
+#  AeroSpace — gruvbox rice
+#  docs: https://nikitabobko.github.io/AeroSpace/guide
+# ─────────────────────────────────────────────────────────────
+
+config-version = 2
+
+start-at-login = true
+
+# Keep 1-9 alive even when empty, so the sketchybar workspace row
+# never changes width. Empty ones render dimmed (see plugins/aerospace.sh).
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/bin/borders',
+  'exec-and-forget /opt/homebrew/bin/sketchybar',
+]
+
+# Normalization keeps the tree tidy instead of deeply nested
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# Don't let the mouse lag behind the focus
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+
+# Tell sketchybar which workspace is live
+exec-on-workspace-change = [
+  '/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
+[key-mapping]
+preset = 'qwerty'
+
+# outer.top leaves room for the floating sketchybar (36 height + 6 offset + gap)
+[gaps]
+inner.horizontal = 8
+inner.vertical   = 8
+outer.left       = 8
+outer.bottom     = 8
+outer.top        = 50
+outer.right      = 8
+
+# ─────────────────────────────── main mode
+[mode.main.binding]
+
+# launchers
+# NOTE: alt-b / alt-f deliberately left free — readline uses them for
+# backward-word / forward-word in the terminal. Browser + fullscreen
+# are on alt-shift instead.
+alt-enter   = 'exec-and-forget open -na Ghostty'
+alt-shift-b = 'exec-and-forget open -a Zen'
+
+# focus
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# move window
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# resize
+alt-minus  = 'resize smart -50'
+alt-equal  = 'resize smart +50'
+alt-shift-0 = 'balance-sizes'
+
+# layouts
+alt-slash   = 'layout tiles horizontal vertical'
+alt-comma   = 'layout accordion horizontal vertical'
+alt-shift-f = 'fullscreen'
+alt-shift-space = 'layout floating tiling'
+
+# join (merge window into neighbour's container)
+alt-shift-ctrl-h = 'join-with left'
+alt-shift-ctrl-j = 'join-with down'
+alt-shift-ctrl-k = 'join-with up'
+alt-shift-ctrl-l = 'join-with right'
+
+# workspaces
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# service mode
+alt-shift-semicolon = 'mode service'
+
+# ─────────────────────────────── service mode
+[mode.service.binding]
+esc         = ['reload-config', 'mode main']
+r           = ['flatten-workspace-tree', 'mode main']  # reset layout
+f           = ['layout floating tiling', 'mode main']
+backspace   = ['close-all-windows-but-current', 'mode main']
+
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
+
+# ─────────────────────────────── window rules
+# Things that should never be tiled
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+if.window-title-regex-substring = 'Copy|Info'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.tailscale.ipn.macsys'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'layout floating'

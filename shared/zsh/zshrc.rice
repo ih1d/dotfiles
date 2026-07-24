@@ -1,0 +1,53 @@
+# ═══════════════════════════════════════════════════════════════
+#  gruvbox rice — shell layer
+#  Sourced from ~/.zshrc; portable between macOS and Linux.
+# ═══════════════════════════════════════════════════════════════
+
+export EDITOR="${EDITOR:-vim}"
+export CLICOLOR=1
+
+# ── prompt ─────────────────────────────────────────────────────
+command -v starship >/dev/null && eval "$(starship init zsh)"
+
+# ── smarter cd ─────────────────────────────────────────────────
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# ── fzf: gruvbox colours + keybindings ─────────────────────────
+export FZF_DEFAULT_OPTS="
+  --color=bg+:#3c3836,bg:#1d2021,spinner:#8ec07c,hl:#83a598
+  --color=fg:#ebdbb2,header:#83a598,info:#fabd2f,pointer:#8ec07c
+  --color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598
+  --color=border:#665c54
+  --border=rounded --height=60% --layout=reverse --info=inline --prompt='❯ '"
+command -v fzf >/dev/null && source <(fzf --zsh) 2>/dev/null
+
+# ── ls / cat replacements ──────────────────────────────────────
+if command -v eza >/dev/null; then
+  alias ls='eza --icons --group-directories-first'
+  alias ll='eza -lh --icons --group-directories-first --git'
+  alias la='eza -lah --icons --group-directories-first --git'
+  alias lt='eza --tree --level=2 --icons --group-directories-first'
+fi
+command -v bat >/dev/null && alias cat='bat --plain' && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+command -v yazi   >/dev/null && alias y='yazi'
+command -v lazygit >/dev/null && alias lg='lazygit'
+
+# ── window manager helpers ─────────────────────────────────────
+# macOS
+if command -v aerospace >/dev/null; then
+  alias wm-reload='aerospace reload-config && sketchybar --reload && echo "aerospace + sketchybar reloaded"'
+  alias wm-keys='grep -E "^(alt|cmd)" ~/.config/aerospace/aerospace.toml'
+# Linux / Hyprland
+elif command -v hyprctl >/dev/null; then
+  alias wm-reload='hyprctl reload && pkill -SIGUSR2 waybar && echo "hyprland + waybar reloaded"'
+  alias wm-keys='grep -E "^bind" ~/.config/hypr/hyprland.conf'
+# Linux / i3
+elif command -v i3-msg >/dev/null; then
+  alias wm-reload='i3-msg reload && polybar-msg cmd restart && echo "i3 + polybar reloaded"'
+  alias wm-keys='grep -E "^bindsym" ~/.config/i3/config'
+fi
+
+# ── greeter (delete to disable) ────────────────────────────────
+if [[ -o interactive ]] && [[ -z "$TMUX" ]] && command -v fastfetch >/dev/null; then
+  fastfetch
+fi

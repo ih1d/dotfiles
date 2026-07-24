@@ -1,0 +1,36 @@
+# ─────────────────────────────────────────────────────────────
+#  Ghostty — gruvbox rice
+# ─────────────────────────────────────────────────────────────
+
+theme = gruvbox-dark-rice
+
+font-family = "Iosevka Nerd Font"
+font-size = 14
+font-thicken = true
+adjust-cell-height = 12%
+
+# translucent + blurred so the wallpaper reads through
+background-opacity = 0.92
+background-blur = 20
+unfocused-split-opacity = 0.8
+
+window-padding-x = 14
+window-padding-y = 12
+window-padding-balance = true
+window-decoration = auto
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+# quick terminal: ctrl+` drops a gruvbox scratchpad from the top
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.12
+
+copy-on-select = clipboard
+confirm-close-surface = false
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title

@@ -1,0 +1,210 @@
+syntax on 
+filetype plugin indent on
+set relativenumber
+set showmode
+set nowrap
+set tw=80
+set smartcase
+set smarttab
+set re=2
+set autoindent
+" set smartindent
+set autoread
+set backspace=indent,eol,start
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set incsearch
+set history=1000
+set clipboard=unnamed,autoselect
+set noswapfile
+highlight Comment ctermfg=green
+set ruler
+set ai
+set completeopt=menuone,menu,longest
+autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+let &t_ut=''
+" set t_RV=
+set encoding=UTF-8
+
+set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
+
+set wildmode=longest,list,full
+set wildmenu
+set completeopt+=longest
+
+set cmdheight=1
+set mouse=nicr
+set splitbelow splitright
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'preservim/tagbar'
+Plug 'ryanoasis/vim-devicons'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'prisma/vim-prisma'
+Plug 'jpalardy/vim-slime'
+Plug 'ziglang/zig.vim'
+Plug 'neoclide/jsonc.vim'
+Plug 'kaarmu/typst.vim'
+
+call plug#end()
+
+" Customization
+set background=dark
+colorscheme gruvbox
+
+" ═══════════════════════════════════════════════════════════════
+"  vim-airline — gruvbox powerline bar
+"  Requires a Nerd Font in the terminal (Iosevka Nerd Font is set
+"  in the Ghostty config) — that's what draws the  arrows.
+" ═══════════════════════════════════════════════════════════════
+let g:airline_theme = 'gruvbox_rice'
+let g:airline_powerline_fonts = 1
+set laststatus=2
+set noshowmode              " airline already shows the mode
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" ── the bracketed arrow separators ─────────────────────────────
+"      solid right arrow   (between sections)
+"      thin right chevron  (within a section)
+"      solid left arrow    (right-hand side)
+"      thin left chevron   (right-hand side)
+let g:airline_left_sep      = ""
+let g:airline_left_alt_sep  = ""
+let g:airline_right_sep     = ""
+let g:airline_right_alt_sep = ""
+
+" ── glyphs ─────────────────────────────────────────────────────
+let g:airline_symbols.branch     = ""
+let g:airline_symbols.readonly   = ""
+let g:airline_symbols.linenr     = " "
+let g:airline_symbols.maxlinenr  = ''
+let g:airline_symbols.colnr      = ' :'
+let g:airline_symbols.dirty      = ' ●'
+let g:airline_symbols.paste      = 'ρ'
+let g:airline_symbols.spell      = 'Ꞩ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" ── tabline gets the same arrows ───────────────────────────────
+let g:airline#extensions#tabline#enabled        = 1
+let g:airline#extensions#tabline#formatter      = 'unique_tail'
+let g:airline#extensions#tabline#left_sep       = ""
+let g:airline#extensions#tabline#left_alt_sep   = ""
+let g:airline#extensions#tabline#right_sep      = ""
+let g:airline#extensions#tabline#right_alt_sep  = ""
+
+" ── extensions ─────────────────────────────────────────────────
+let g:airline#extensions#branch#enabled     = 1
+let g:airline#extensions#coc#enabled        = 1
+let g:airline#extensions#tagbar#enabled     = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_skip_empty_sections           = 1
+" tmuxline would rewrite the tmux bar we already themed — keep it off
+let g:airline#extensions#tmuxline#enabled   = 0
+
+" compact right side:  42%  120/300 :8
+let g:airline_section_z = '%p%% ' . "" . ' %l/%L :%v'
+
+let mapleader = " "
+set pastetoggle=<F10>
+" ********************
+" **** KEY REMAPS **** 
+" ********************
+
+" INSERT 
+:imap jj <Esc>
+
+" NORMAL 
+nnoremap <Leader>r :edit<CR>
+nnoremap <Leader>wj <C-W><C-J>
+nnoremap <Leader>wk <C-W><C-K>
+nnoremap <Leader>wh <C-W><C-H>
+nnoremap <Leader>wl <C-W><C-L>
+nnoremap <Leader>. :Explore<CR>
+nnoremap <Leader><Tab> :bn<CR>
+nnoremap <Leader><Backspace> :bp<CR>
+nnoremap <Leader>wd :bd<CR>
+nnoremap <Leader>d <Plug>(coc-definition)
+nnoremap <Leader>t <Plug>(coc-type-definition)
+nnoremap <Leader>p <Plug>(coc-diagnostic-prev)
+nnoremap <Leader>n <Plug>(coc-diagnostic-next)
+nnoremap <Leader>s :call ShowDoc()<CR>
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" DISABLED
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+
+
+let g:tex_flavor = 'latex'
+
+" with a generic interface:
+let g:vimtex_general_view_method = '/System/Applications/Preview.app/Contents/MacOS/Preview'
+let g:vimtex_general_options = ''
+
+" Use latexmk for continuous compilation
+let g:vimtex_compiler_method = 'latexmk'
+
+" Automatically open Quickfix window if errors occur
+let g:vimtex_quickfix_mode = 1
+
+" *************** 
+" *** Plugins ***
+" *************** 
+
+" CoC
+autocmd BufWritePost *.hs call CocActionAsync('format')
+function! ShowDoc()
+    if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys('s', 'in')
+    endif
+endfunction
+
+autocmd BufWritePre *.zig,*.zon call CocActionAsync('fixAll')
+
+" Tagbar
+nnoremap <Leader>tt :TagbarToggle<CR>
+nnoremap gj :TagbarJump<CR>
+nnoremap gn :TagbarJumpNext<CR>
+let g:tagbar_ctags_bin="/opt/homebrew/bin/ctags"
+let g:tagbar_map_showproto = 'p'
+let g:tagbar_map_close = '<space>wd'
+let g:tagbar_autofocus = 1
+let g:tagbar_show_data_type = 1
+
+" FZF
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>rg :Rg<CR>
+
+" Fugitive
+nnoremap <Leader>ga :Git add .<CR>
+nnoremap <Leader>gc :Git commit<CR>
+nnoremap <Leader>gu :Git push origin main<CR>
+nnoremap <Leader>gp :Git pull origin main<CR>
+nnoremap <Leader>gs :Git status<CR>
+
+" Vim Slime
+let b:slime_target = "tmux"
