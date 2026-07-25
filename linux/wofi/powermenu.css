@@ -1,0 +1,41 @@
+/* ═══════════════════════════════════════════════════════════════
+   wofi — power menu (alt+shift+q). Palette and geometry: CLAUDE.md §2.
+   Mirrors the rofi theme inlined in linux/scripts/powermenu.sh.
+   ═══════════════════════════════════════════════════════════════ */
+
+* {
+    font-family: "Iosevka Nerd Font";
+    font-size: 14px;
+}
+
+window {
+    background-color: #1d2021;          /* GB_BASE    */
+    border: 2px solid #3c3836;          /* GB_SURFACE */
+    border-radius: 10px;
+    color: #ebdbb2;                     /* GB_TEXT    */
+}
+
+#outer-box { margin: 8px; }
+
+#input {
+    background-color: #1d2021;
+    border: none;
+    color: #928374;                     /* GB_MUTED   */
+    margin-bottom: 6px;
+    padding: 4px 8px;
+}
+
+#scroll { margin: 0; }
+
+#entry {
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+#entry:selected,
+#entry:selected #text {
+    background-color: #fabd2f;          /* GB_ACCENT  */
+    color: #1d2021;
+}
+
+#text { color: #ebdbb2; }

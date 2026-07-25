@@ -113,8 +113,10 @@ if [ "$OS" = macos ]; then
        "$HOME/.config/ghostty/themes/gruvbox-dark-rice"
   link macos/ghostty/config \
        "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
+  link macos/powermenu.sh             "$HOME/.local/bin/rice-powermenu"
   [ "$UNLINK" = 1 ] || [ "$DRY" = 1 ] || chmod +x "$HOME/.config/sketchybar/sketchybarrc" \
-        "$HOME/.config/sketchybar/plugins/"*.sh "$HOME/.config/borders/bordersrc" 2>/dev/null || true
+        "$HOME/.config/sketchybar/plugins/"*.sh "$HOME/.config/borders/bordersrc" \
+        "$HOME/.local/bin/rice-powermenu" 2>/dev/null || true
 else
   head_ "linux"
   link linux/hypr/hyprland.conf   "$HOME/.config/hypr/hyprland.conf"
@@ -124,9 +126,12 @@ else
   link linux/polybar/config.ini   "$HOME/.config/polybar/config.ini"
   link linux/polybar/launch.sh    "$HOME/.config/polybar/launch.sh"
   link linux/ghostty/config       "$HOME/.config/ghostty/config"
+  link linux/wofi/powermenu.css   "$HOME/.config/wofi/powermenu.css"
+  link linux/scripts/powermenu.sh "$HOME/.local/bin/rice-powermenu"
   link macos/ghostty/themes/gruvbox-dark-rice \
        "$HOME/.config/ghostty/themes/gruvbox-dark-rice"
-  [ "$UNLINK" = 1 ] || [ "$DRY" = 1 ] || chmod +x "$HOME/.config/polybar/launch.sh" 2>/dev/null || true
+  [ "$UNLINK" = 1 ] || [ "$DRY" = 1 ] || chmod +x "$HOME/.config/polybar/launch.sh" \
+        "$HOME/.local/bin/rice-powermenu" 2>/dev/null || true
 fi
 
 # ── wallpaper ──────────────────────────────────────────────────

@@ -16,6 +16,7 @@ to what Homebrew installs on macOS.
 | screenshot | `grim` + `slurp` |
 | audio ctl | `wireplumber` (gives `wpctl`) |
 | clipboard | `wl-clipboard` |
+| screen lock | `hyprlock` (or `swaylock`) — the power menu's `lock` entry |
 | portal | `xdg-desktop-portal-hyprland` |
 | login manager | `ly` (see below) |
 
@@ -30,6 +31,7 @@ to what Homebrew installs on macOS.
 | notifications | `dunst` |
 | compositor (blur/shadows) | `picom` |
 | screenshot | `maim` + `xclip` |
+| screen lock | `i3lock` — the power menu's `lock` entry |
 | audio ctl | `pulseaudio-utils` (gives `pactl`) |
 | login manager | `ly` (see below) |
 

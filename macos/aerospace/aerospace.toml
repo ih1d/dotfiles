@@ -56,6 +56,8 @@ outer.right      = 8
 alt-enter = 'exec-and-forget open -na Ghostty'
 alt-b     = 'exec-and-forget open -a Zen'
 alt-x     = 'close'
+# lock / logout / sleep / restart / shutdown — macos/powermenu.sh
+alt-shift-q = 'exec-and-forget $HOME/.local/bin/rice-powermenu'
 
 # focus
 alt-h = 'focus left'

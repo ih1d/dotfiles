@@ -51,7 +51,9 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x kill
-bindsym $mod+Shift+q kill
+# lock / logout / suspend / reboot / shutdown — linux/scripts/powermenu.sh.
+# Absolute path for the same PATH reason as $browser above.
+bindsym $mod+Shift+q exec --no-startup-id $HOME/.local/bin/rice-powermenu
 bindsym $mod+Shift+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+slash split toggle

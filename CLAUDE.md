@@ -23,6 +23,7 @@ macos/                  ← macOS-only stack
   sketchybar/           status bar (+ plugins/ = one script per bar item)
   borders/              JankyBorders — focused-window outline
   ghostty/              terminal config + colour theme
+  powermenu.sh          alt+shift+q — lock/logout/sleep/restart/shutdown
   defaults.sh           dock / menu bar / accent / wallpaper; has a revert()
 
 linux/                  ← Linux equivalents (Wayland + X11 paths)
@@ -30,6 +31,8 @@ linux/                  ← Linux equivalents (Wayland + X11 paths)
   waybar/               Waybar     (bar for Hyprland/sway)
   i3/                   i3         (X11 fallback)
   polybar/              Polybar    (bar for i3)
+  wofi/                 power-menu styling (Wayland launcher)
+  scripts/powermenu.sh  alt+shift+q — lock/logout/suspend/reboot/shutdown
   ghostty/              same terminal, different config path
 
 shared/                 ← identical on both platforms
@@ -100,7 +103,8 @@ platforms (on macOS, `alt` = Option; Ghostty sets `macos-option-as-alt`).
 | `alt+tab` | last workspace |
 | `alt+enter` | new terminal |
 | `alt+b` | browser (Zen) |
-| `alt+x` | close window (`alt+shift+q` kept as an alias) |
+| `alt+x` | close window |
+| `alt+shift+q` | power menu — lock · logout · sleep/suspend · restart/reboot · shutdown |
 | `alt+shift+f` | fullscreen |
 | `alt+shift+space` | toggle floating |
 | `alt+-` / `alt+=` | resize |
@@ -110,6 +114,13 @@ platforms (on macOS, `alt` = Option; Ghostty sets `macos-option-as-alt`).
 
 `alt+f` is **deliberately left unbound** — readline uses it for forward-word in
 the terminal. Do not claim it.
+
+`alt+shift+q` used to be a second binding for close-window. It is now the power
+menu; `alt+x` is the only way to close a window. One script per platform,
+installed to the same path so the binding is literally identical on both:
+`linux/scripts/powermenu.sh` and `macos/powermenu.sh` → `~/.local/bin/rice-powermenu`.
+The entries and their order are part of the contract; the *picker* is not
+(wofi on Wayland, rofi on X11, AppleScript `choose from list` on macOS).
 
 `alt+b` was previously held free for readline's backward-word and is now the
 browser key by explicit choice. The cost is real and accepted: the WM grabs the
@@ -253,6 +264,12 @@ blurred, animated gruvbox rice is still the same rice.
   with `tar: unknown letter e`. `shared/zsh/zshrc.rice` ships a `brew()`
   wrapper that strips `*/plan9/bin` from `PATH` for that one command. If a
   brew install fails oddly, check this first.
+- **The macOS power menu needs Automation permission.** `alt+shift+q`'s logout /
+  restart / shutdown entries drive `System Events` via `osascript`, so the app
+  that launched AeroSpace must be allowed to control System Events (System
+  Settings → Privacy & Security → Automation). `lock` and `sleep` use `pmset`
+  and need nothing. The dialog itself is native Aqua and is not themeable —
+  §2 does not reach it, same as ly's console font on Linux.
 - **AeroSpace needs Accessibility permission** (System Settings → Privacy &
   Security → Accessibility) on first launch, or it starts but never answers
   `aerospace` CLI calls.
