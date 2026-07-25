@@ -99,7 +99,8 @@ platforms (on macOS, `alt` = Option; Ghostty sets `macos-option-as-alt`).
 | `alt+shift+1..9` | move window to workspace N |
 | `alt+tab` | last workspace |
 | `alt+enter` | new terminal |
-| `alt+shift+b` | browser |
+| `alt+b` | browser (Zen) |
+| `alt+x` | close window (`alt+shift+q` kept as an alias) |
 | `alt+shift+f` | fullscreen |
 | `alt+shift+space` | toggle floating |
 | `alt+-` / `alt+=` | resize |
@@ -107,8 +108,13 @@ platforms (on macOS, `alt` = Option; Ghostty sets `macos-option-as-alt`).
 | `alt+,` | toggle accordion/stacked |
 | `alt+shift+;` | enter service mode (then `esc` reload · `r` reset tree · `backspace` close others) |
 
-`alt+b` and `alt+f` are **deliberately left unbound** — readline uses them for
-backward-word / forward-word in the terminal. Do not claim them.
+`alt+f` is **deliberately left unbound** — readline uses it for forward-word in
+the terminal. Do not claim it.
+
+`alt+b` was previously held free for readline's backward-word and is now the
+browser key by explicit choice. The cost is real and accepted: the WM grabs the
+chord globally, so backward-word is no longer reachable inside a terminal. If
+you want it back, `ctrl+[` then `b` is the readline equivalent (`ESC b`).
 
 ---
 
@@ -147,6 +153,7 @@ Pick Wayland (preferred) or X11, then map one-for-one. Everything in
 | `memory_pressure` | `free` or `/proc/meminfo` | same |
 | `ps -A -o %cpu` | `/proc/stat` delta | same |
 | `osascript` volume | `wpctl get-volume @DEFAULT_AUDIO_SINK@` | `pactl` |
+| macOS `loginwindow` (not themeable) | **ly** | same |
 
 ### Doing the port
 
@@ -155,7 +162,54 @@ Pick Wayland (preferred) or X11, then map one-for-one. Everything in
 2. Install the packages listed in `linux/packages.md`.
 3. Regenerate the wallpaper at the target resolution:
    `W=2560 H=1440 ./wallpaper/make_wallpaper.sh` (edit `W`/`H` at the top).
-4. Verify against §2 and §3 — same gaps, same accent, same keys.
+4. Set up the login screen by hand — see below. `install.sh` cannot do it.
+5. Verify against §2 and §3 — same gaps, same accent, same keys.
+
+### Login screen — ly
+
+**ly** is a TUI display manager that runs on a bare tty, so it needs no X/Wayland
+session of its own and works for both the Hyprland and i3 halves of this rice.
+
+It is the one piece of the setup `install.sh` does **not** manage: its config is
+root-owned at `/etc/ly/config.ini`, outside `$HOME`, and this repo only ever
+symlinks into `$HOME`. The values below are the source of truth; apply them by
+hand and re-apply them after an upgrade that overwrites the config.
+
+Upstream is <https://codeberg.org/fairyglade/ly> (GitHub `fairyglade/ly` mirrors
+it). It builds with Zig 0.16.x:
+
+```sh
+git clone https://codeberg.org/fairyglade/ly.git
+cd ly && zig build
+sudo zig build installexe -Dinit_system=systemd   # `installnoconf` preserves an existing config
+```
+
+Enable it, and take tty2 away from getty or the two fight over the same tty:
+
+```sh
+sudo systemctl enable ly@tty2.service
+sudo systemctl disable getty@tty2.service
+```
+
+The §2 palette in ly's own format — `0xSSRRGGBB`, where the leading byte is a
+style flag (`0x01` = bold). `full_color = true` must stay on or these collapse
+to the 16-colour console palette:
+
+| Key | Value | Role |
+|---|---|---|
+| `bg` | `0x001d2021` | `GB_BASE` |
+| `fg` | `0x00ebdbb2` | `GB_TEXT` |
+| `border_fg` | `0x00fabd2f` | `GB_ACCENT` |
+| `error_bg` | `0x001d2021` | `GB_BASE` |
+| `error_fg` | `0x01fb4934` | `GB_CRIT`, bold |
+
+Keep `animation = none`. The bundled animations (`doom`, `matrix`, `colormix`,
+`gameoflife`) each carry their own hardcoded palette and none of them is gruvbox.
+
+Two parts of §2 genuinely do not reach ly, and should not be faked: it renders in
+the **console font**, not Iosevka Nerd Font, so there are no powerline glyphs;
+and it has no gaps or corner radii, only `box_position_h`/`box_position_v` and
+`margin_box_h`/`margin_box_v`.
 
 ### Things that genuinely have no macOS equivalent, and are therefore free wins
 

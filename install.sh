@@ -122,9 +122,11 @@ else
   link linux/waybar/style.css     "$HOME/.config/waybar/style.css"
   link linux/i3/config            "$HOME/.config/i3/config"
   link linux/polybar/config.ini   "$HOME/.config/polybar/config.ini"
+  link linux/polybar/launch.sh    "$HOME/.config/polybar/launch.sh"
   link linux/ghostty/config       "$HOME/.config/ghostty/config"
   link macos/ghostty/themes/gruvbox-dark-rice \
        "$HOME/.config/ghostty/themes/gruvbox-dark-rice"
+  [ "$UNLINK" = 1 ] || [ "$DRY" = 1 ] || chmod +x "$HOME/.config/polybar/launch.sh" 2>/dev/null || true
 fi
 
 # ── wallpaper ──────────────────────────────────────────────────

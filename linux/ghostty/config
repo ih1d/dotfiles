@@ -20,6 +20,12 @@ window-padding-y = 12
 window-padding-balance = true
 window-decoration = false
 
+# alt+enter gives a fresh terminal at ~, not wherever the last one happened to
+# be. Ghostty is single-instance, so without this a new window inherits the
+# focused window's cwd. Splits and tabs still inherit — that's the useful case.
+window-inherit-working-directory = false
+working-directory = home
+
 cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true

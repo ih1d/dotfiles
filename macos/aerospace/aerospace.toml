@@ -50,11 +50,12 @@ outer.right      = 8
 [mode.main.binding]
 
 # launchers
-# NOTE: alt-b / alt-f deliberately left free — readline uses them for
-# backward-word / forward-word in the terminal. Browser + fullscreen
-# are on alt-shift instead.
-alt-enter   = 'exec-and-forget open -na Ghostty'
-alt-shift-b = 'exec-and-forget open -a Zen'
+# NOTE: alt-f deliberately left free — readline uses it for forward-word.
+# alt-b is the browser by explicit choice; readline's backward-word is no
+# longer reachable in the terminal (use ESC b). Fullscreen stays on alt-shift.
+alt-enter = 'exec-and-forget open -na Ghostty'
+alt-b     = 'exec-and-forget open -a Zen'
+alt-x     = 'close'
 
 # focus
 alt-h = 'focus left'

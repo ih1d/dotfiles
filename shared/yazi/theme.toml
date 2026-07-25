@@ -35,8 +35,8 @@ unset_alt   = { fg = "#d3869b", bg = "#3c3836" }
 
 [status]
 overall   = { fg = "#ebdbb2", bg = "#1d2021" }
-sep_left  = { open = "", close = "" }
-sep_right = { open = "", close = "" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 progress_label  = { fg = "#fbf1c7", bold = true }
 progress_normal = { fg = "#fabd2f", bg = "#3c3836" }
 progress_error  = { fg = "#fb4934", bg = "#3c3836" }
@@ -89,7 +89,7 @@ rules = [
   { mime = "application/{,g}zip", fg = "#d3869b" },
   { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#d3869b" },
   { mime = "application/{pdf,doc,rtf}", fg = "#83a598" },
-  { name = "*", is = "orphan", bg = "#fb4934" },
-  { name = "*", is = "exec", fg = "#b8bb26" },
-  { name = "*/", fg = "#83a598" },
+  { url = "*", is = "orphan", bg = "#fb4934" },
+  { url = "*", is = "exec", fg = "#b8bb26" },
+  { url = "*/", fg = "#83a598" },
 ]

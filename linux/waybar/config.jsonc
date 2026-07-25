@@ -24,27 +24,27 @@
   },
 
   "hyprland/window": {
-    "format": "  {}",
+    "format": "  {}",
     "max-length": 48,
     "separate-outputs": true
   },
 
   "cpu": {
     "interval": 3,
-    "format": "  {usage}%",
+    "format": "  {usage}%",
     "states": { "warning": 50, "critical": 80 }
   },
 
   "memory": {
     "interval": 5,
-    "format": "  {percentage}%",
+    "format": "󰍛  {percentage}%",
     "states": { "warning": 65, "critical": 85 }
   },
 
   "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "format-muted": "  muted",
-    "format-icons": { "default": ["", "", ""] },
+    "format-muted": "  muted",
+    "format-icons": { "default": ["", "", ""] },
     "on-click": "pavucontrol"
   },
 
@@ -52,13 +52,13 @@
     "interval": 60,
     "states": { "warning": 30, "critical": 10 },
     "format": "{icon}  {capacity}%",
-    "format-charging": "  {capacity}%",
-    "format-icons": ["", "", "", "", ""]
+    "format-charging": "  {capacity}%",
+    "format-icons": ["", "", "", "", ""]
   },
 
   "clock": {
     "interval": 10,
-    "format": "  {:%a %d %b  %H:%M}",
+    "format": "  {:%a %d %b  %H:%M}",
     "tooltip-format": "<tt>{calendar}</tt>"
   }
 }

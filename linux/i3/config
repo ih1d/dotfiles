@@ -6,7 +6,10 @@
 
 set $mod Mod1
 set $term ghostty
-set $browser zen-browser
+# Absolute path on purpose: i3 is started by lightdm, which does not source
+# ~/.profile or ~/.zprofile, so ~/.local/bin is NOT on i3's PATH. A bare
+# "zen-browser" here exits 127 and i3 reports no error. See ~/.xsessionrc.
+set $browser $HOME/.local/bin/zen-browser
 
 font pango:Iosevka Nerd Font 11
 
@@ -30,18 +33,24 @@ client.urgent           $red     $red        $bg0_h   $red       $red
 default_border pixel 5
 default_floating_border pixel 5
 gaps inner 8
-gaps outer 0
+gaps outer 8
 gaps top 50
 smart_borders no_gaps
 
-exec_always --no-startup-id polybar-msg cmd quit; polybar rice &
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/gruvbox-ridge.png
+# compositor (bar translucency + ghostty blur, §2) and notifications — started once
+exec --no-startup-id picom
+exec --no-startup-id dunst
 
 # ── keys ───────────────────────────────────────────────────────
-# alt+b / alt+f intentionally unbound — readline needs them
+# alt+f intentionally unbound — readline needs it for forward-word.
+# alt+b is claimed by the browser by explicit choice; readline's
+# backward-word is no longer reachable inside the terminal.
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+b exec $browser
+bindsym $mod+b exec $browser
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+x kill
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle

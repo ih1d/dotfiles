@@ -4,7 +4,7 @@
 #  One continuous bar spanning the terminal, matching sketchybar
 #  up top and the tmux bar in between:
 #
-#   󰀵 isaaclopez │  ~/P/dotfiles │  main ●2 ─────── 󱎫 1.2s │  16:22
+#   󰀵 isaaclopez │  ~/P/dotfiles │  main ●2 ─────── 󱎫 1.2s │  16:22
 #   ❯
 #
 #  Design rule: EVERY segment paints bg:color_bg1, and each
@@ -13,7 +13,7 @@
 # ─────────────────────────────────────────────────────────────
 
 format = """
-[](fg:color_bg1)\
+[](fg:color_bg1)\
 $os\
 $username\
 $directory\
@@ -32,7 +32,7 @@ $conda\
 $fill\
 $cmd_duration\
 $time\
-[](fg:color_bg1)\
+[](fg:color_bg1)\
 $line_break\
 $character"""
 
@@ -71,7 +71,7 @@ Arch   = "󰣇 "
 Debian = "󰣚 "
 Ubuntu = "󰕈 "
 Fedora = "󰣛 "
-NixOS  = " "
+NixOS  = " "
 Linux  = "󰌽 "
 
 [username]
@@ -81,10 +81,10 @@ style_root = "fg:color_red bg:color_bg1"
 format = '[$user ]($style)'
 
 [directory]
-format = '[│ ](fg:color_bg3 bg:color_bg1)[ $path ](fg:color_blue bg:color_bg1)[$read_only](fg:color_red bg:color_bg1)'
+format = '[│ ](fg:color_bg3 bg:color_bg1)[ $path ](fg:color_blue bg:color_bg1)[$read_only](fg:color_red bg:color_bg1)'
 truncation_length = 3
 truncation_symbol = "…/"
-read_only = " "
+read_only = " "
 
 [directory.substitutions]
 "Documents" = "󰈙"
@@ -96,7 +96,7 @@ read_only = " "
 
 # ── middle: vcs ───────────────────────────────────────────────
 [git_branch]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $branch ](fg:color_aqua bg:color_bg1)'
 
 [git_status]
@@ -106,7 +106,7 @@ ahead      = "⇡${count} "
 behind     = "⇣${count} "
 diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
 untracked  = "?${count} "
-stashed    = " "
+stashed    = " "
 modified   = "●${count} "
 staged     = "+${count} "
 renamed    = "»${count} "
@@ -114,39 +114,39 @@ deleted    = "✘${count} "
 
 # ── middle: toolchains ────────────────────────────────────────
 [nodejs]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_green bg:color_bg1)'
 
 [c]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_blue bg:color_bg1)'
 
 [rust]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_orange bg:color_bg1)'
 
 [golang]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_aqua bg:color_bg1)'
 
 [python]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version(($virtualenv)) ](fg:color_yellow bg:color_bg1)'
 
 [haskell]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_purple bg:color_bg1)'
 
 [java]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_red bg:color_bg1)'
 
 [zig]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $version ](fg:color_orange bg:color_bg1)'
 
 [docker_context]
-symbol = ""
+symbol = ""
 format = '[│ ](fg:color_bg3 bg:color_bg1)[$symbol $context ](fg:color_blue bg:color_bg1)'
 
 [conda]
@@ -161,7 +161,7 @@ format = '[󱎫 $duration ](fg:color_yellow bg:color_bg1)[│ ](fg:color_bg3 bg:
 [time]
 disabled = false
 time_format = "%H:%M"
-format = '[ $time ](fg:color_fg0 bg:color_bg1)'
+format = '[ $time ](fg:color_fg0 bg:color_bg1)'
 
 # ── the input line ────────────────────────────────────────────
 [line_break]

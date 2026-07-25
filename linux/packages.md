@@ -17,6 +17,7 @@ to what Homebrew installs on macOS.
 | audio ctl | `wireplumber` (gives `wpctl`) |
 | clipboard | `wl-clipboard` |
 | portal | `xdg-desktop-portal-hyprland` |
+| login manager | `ly` (see below) |
 
 ## X11 (fallback)
 
@@ -30,6 +31,15 @@ to what Homebrew installs on macOS.
 | compositor (blur/shadows) | `picom` |
 | screenshot | `maim` + `xclip` |
 | audio ctl | `pulseaudio-utils` (gives `pactl`) |
+| login manager | `ly` (see below) |
+
+## Login manager — ly
+
+Serves both stacks; it's a TUI on a tty, so it doesn't care which one you boot
+into. Packaged on some distros (Arch: `ly`), absent on others (Debian/Ubuntu) —
+there, build it from source with Zig 0.16.x. Enable command, config path, and
+the gruvbox values for `/etc/ly/config.ini` are in **CLAUDE.md §5**; that config
+is root-owned, so `install.sh` cannot symlink it and it must be applied by hand.
 
 ## Shared — same on macOS and Linux
 
