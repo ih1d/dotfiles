@@ -20,7 +20,6 @@ set incsearch
 set history=1000
 set clipboard=unnamed,autoselect
 set noswapfile
-highlight Comment ctermfg=green
 set ruler
 set ai
 set completeopt=menuone,menu,longest
@@ -60,7 +59,33 @@ Plug 'kaarmu/typst.vim'
 
 call plug#end()
 
-" Customization
+" ═══════════════════════════════════════════════════════════════
+"  Colour — must agree with Ghostty exactly (see CLAUDE.md §2).
+"
+"  termguicolors is NOT optional here. Without it vim falls back
+"  to gruvbox's cterm indices, and Ghostty's theme only overrides
+"  palette 0-15 — gruvbox lives in 66-245, so every colour becomes
+"  an xterm-cube approximation: GB_MUTED #928374 renders #8a8a8a,
+"  GB_ACCENT #fabd2f renders #ffaf00. Greys lose the warm cast.
+"
+"  Inside tmux TERM is tmux-256color, which vim doesn't recognise
+"  as truecolor-capable, so t_8f/t_8b must be set by hand or
+"  termguicolors emits nothing. tmux.conf already passes Tc.
+" ═══════════════════════════════════════════════════════════════
+if has('termguicolors')
+  if !has('gui_running') && &term !~# '^\%(xterm\|screen\|tmux\)'
+    " leave t_8f/t_8b alone; vim already knows this terminal
+  else
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
+  set termguicolors
+endif
+
+" 'hard' = GB_BG0_H #1d2021 = GB_BASE, the Ghostty background.
+" The default 'medium' is #282828 and reads as a lighter rectangle.
+let g:gruvbox_contrast_dark = 'hard'
+
 set background=dark
 colorscheme gruvbox
 
