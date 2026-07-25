@@ -5,6 +5,9 @@
 # ═══════════════════════════════════════════════════════════════
 
 set $mod Mod1
+# Bare `ghostty` is correct here: linux/ghostty/config sets
+# gtk-single-instance = true, so this hands off to the running instance and
+# opens a new window instead of forking a process per press.
 set $term ghostty
 # Absolute path on purpose: i3 is started by lightdm, which does not source
 # ~/.profile or ~/.zprofile, so ~/.local/bin is NOT on i3's PATH. A bare

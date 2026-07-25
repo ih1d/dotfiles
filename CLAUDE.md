@@ -270,6 +270,12 @@ blurred, animated gruvbox rice is still the same rice.
   Settings → Privacy & Security → Automation). `lock` and `sleep` use `pmset`
   and need nothing. The dialog itself is native Aqua and is not themeable —
   §2 does not reach it, same as ly's console font on Linux.
+- **`alt+enter` also needs Automation permission** (AeroSpace → Ghostty). It
+  drives Ghostty's AppleScript dictionary (`new window`) rather than
+  `open -na Ghostty`, because `-n` forks a whole app process per press and a
+  bare `open -a` only raises the existing one. The Linux half of the same fix
+  is `gtk-single-instance = true` in `linux/ghostty/config` — without it a WM
+  `exec ghostty` bind is a bare CLI launch and forks per press too.
 - **AeroSpace needs Accessibility permission** (System Settings → Privacy &
   Security → Accessibility) on first launch, or it starts but never answers
   `aerospace` CLI calls.

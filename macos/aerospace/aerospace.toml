@@ -53,7 +53,11 @@ outer.right      = 8
 # NOTE: alt-f deliberately left free — readline uses it for forward-word.
 # alt-b is the browser by explicit choice; readline's backward-word is no
 # longer reachable in the terminal (use ESC b). Fullscreen stays on alt-shift.
-alt-enter = 'exec-and-forget open -na Ghostty'
+# `open -na Ghostty` would fork a whole new app process per press; `open -a`
+# only raises the existing one. Ghostty ships an AppleScript dictionary
+# (Contents/Resources/Ghostty.sdef) with a real `new window` — one process,
+# one new window. Needs Automation permission, same as the power menu.
+alt-enter = 'exec-and-forget osascript -e "tell application \"Ghostty\" to new window"'
 alt-b     = 'exec-and-forget open -a Zen'
 alt-x     = 'close'
 # lock / logout / sleep / restart / shutdown — macos/powermenu.sh

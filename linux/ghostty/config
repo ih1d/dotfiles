@@ -28,6 +28,13 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
 quick-terminal-animation-duration = 0.12
 
+# One process, many windows — the Linux half of the macOS alt+enter fix.
+# The default is `desktop`, which only enables single-instance when Ghostty is
+# launched from its .desktop file; a WM `exec ghostty` bind is a bare CLI
+# launch, so every alt+enter would fork a whole new app process. `true` makes
+# any launch hand off to the running instance and open a window there.
+gtk-single-instance = true
+
 copy-on-select = clipboard
 confirm-close-surface = false
 shell-integration = zsh
