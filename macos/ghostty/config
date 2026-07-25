@@ -24,10 +24,6 @@ cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
-# a new window starts at ~, not wherever the last one was; splits/tabs inherit
-window-inherit-working-directory = false
-working-directory = home
-
 # quick terminal: ctrl+` drops a gruvbox scratchpad from the top
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 quick-terminal-position = top
