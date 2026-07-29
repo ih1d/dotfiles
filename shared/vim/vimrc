@@ -56,6 +56,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'ziglang/zig.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'kaarmu/typst.vim'
+Plug 'Julian/lean.nvim'
 
 call plug#end()
 
@@ -206,8 +207,6 @@ function! ShowDoc()
         call feedkeys('s', 'in')
     endif
 endfunction
-
-autocmd BufWritePre *.zig,*.zon call CocActionAsync('fixAll')
 
 " Tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>

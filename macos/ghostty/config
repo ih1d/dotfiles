@@ -5,7 +5,7 @@
 theme = gruvbox-dark-rice
 
 font-family = "Iosevka Nerd Font"
-font-size = 14
+font-size = 17
 adjust-cell-height = 12%
 
 # translucent + blurred so the wallpaper reads through

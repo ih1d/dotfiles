@@ -51,73 +51,73 @@ outer.right      = 8
 
 # launchers
 # NOTE: alt-f deliberately left free — readline uses it for forward-word.
-# alt-b is the browser by explicit choice; readline's backward-word is no
-# longer reachable in the terminal (use ESC b). Fullscreen stays on alt-shift.
+# cmd-b is the browser by explicit choice; readline's backward-word is no
+# longer reachable in the terminal (use ESC b). Fullscreen stays on cmd-shift.
 # `open -na Ghostty` would fork a whole new app process per press; `open -a`
 # only raises the existing one. Ghostty ships an AppleScript dictionary
 # (Contents/Resources/Ghostty.sdef) with a real `new window` — one process,
 # one new window. Needs Automation permission, same as the power menu.
-alt-enter = 'exec-and-forget osascript -e "tell application \"Ghostty\" to new window"'
-alt-b     = 'exec-and-forget open -a Zen'
-alt-x     = 'close'
+cmd-enter = 'exec-and-forget osascript -e "tell application \"Ghostty\" to new window"'
+cmd-b     = 'exec-and-forget open -a Zen'
+cmd-x     = 'close'
 # lock / logout / sleep / restart / shutdown — macos/powermenu.sh
-alt-shift-q = 'exec-and-forget $HOME/.local/bin/rice-powermenu'
+cmd-shift-q = 'exec-and-forget $HOME/.local/bin/rice-powermenu'
 
 # focus
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+cmd-h = 'focus left'
+cmd-j = 'focus down'
+cmd-k = 'focus up'
+cmd-l = 'focus right'
 
 # move window
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
+cmd-shift-h = 'move left'
+cmd-shift-j = 'move down'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
 
 # resize
-alt-minus  = 'resize smart -50'
-alt-equal  = 'resize smart +50'
-alt-shift-0 = 'balance-sizes'
+cmd-minus  = 'resize smart -50'
+cmd-equal  = 'resize smart +50'
+cmd-shift-0 = 'balance-sizes'
 
 # layouts
-alt-slash   = 'layout tiles horizontal vertical'
-alt-comma   = 'layout accordion horizontal vertical'
-alt-shift-f = 'fullscreen'
-alt-shift-space = 'layout floating tiling'
+cmd-slash   = 'layout tiles horizontal vertical'
+cmd-comma   = 'layout accordion horizontal vertical'
+cmd-shift-f = 'fullscreen'
+cmd-shift-space = 'layout floating tiling'
 
 # join (merge window into neighbour's container)
-alt-shift-ctrl-h = 'join-with left'
-alt-shift-ctrl-j = 'join-with down'
-alt-shift-ctrl-k = 'join-with up'
-alt-shift-ctrl-l = 'join-with right'
+cmd-shift-ctrl-h = 'join-with left'
+cmd-shift-ctrl-j = 'join-with down'
+cmd-shift-ctrl-k = 'join-with up'
+cmd-shift-ctrl-l = 'join-with right'
 
 # workspaces
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+cmd-1 = 'workspace 1'
+cmd-2 = 'workspace 2'
+cmd-3 = 'workspace 3'
+cmd-4 = 'workspace 4'
+cmd-5 = 'workspace 5'
+cmd-6 = 'workspace 6'
+cmd-7 = 'workspace 7'
+cmd-8 = 'workspace 8'
+cmd-9 = 'workspace 9'
 
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+cmd-shift-1 = 'move-node-to-workspace 1'
+cmd-shift-2 = 'move-node-to-workspace 2'
+cmd-shift-3 = 'move-node-to-workspace 3'
+cmd-shift-4 = 'move-node-to-workspace 4'
+cmd-shift-5 = 'move-node-to-workspace 5'
+cmd-shift-6 = 'move-node-to-workspace 6'
+cmd-shift-7 = 'move-node-to-workspace 7'
+cmd-shift-8 = 'move-node-to-workspace 8'
+cmd-shift-9 = 'move-node-to-workspace 9'
 
-alt-tab = 'workspace-back-and-forth'
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+cmd-tab = 'workspace-back-and-forth'
+cmd-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # service mode
-alt-shift-semicolon = 'mode service'
+cmd-shift-semicolon = 'mode service'
 
 # ─────────────────────────────── service mode
 [mode.service.binding]
@@ -126,10 +126,10 @@ r           = ['flatten-workspace-tree', 'mode main']  # reset layout
 f           = ['layout floating tiling', 'mode main']
 backspace   = ['close-all-windows-but-current', 'mode main']
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+cmd-shift-h = ['join-with left', 'mode main']
+cmd-shift-j = ['join-with down', 'mode main']
+cmd-shift-k = ['join-with up', 'mode main']
+cmd-shift-l = ['join-with right', 'mode main']
 
 # ─────────────────────────────── window rules
 # Things that should never be tiled
