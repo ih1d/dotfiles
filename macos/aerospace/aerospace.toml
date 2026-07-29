@@ -59,7 +59,7 @@ outer.right      = 8
 # one new window. Needs Automation permission, same as the power menu.
 cmd-enter = 'exec-and-forget osascript -e "tell application \"Ghostty\" to new window"'
 cmd-b     = 'exec-and-forget open -a Zen'
-cmd-x     = 'close'
+# cmd-x     = 'close'
 # lock / logout / sleep / restart / shutdown — macos/powermenu.sh
 cmd-shift-q = 'exec-and-forget $HOME/.local/bin/rice-powermenu'
 
